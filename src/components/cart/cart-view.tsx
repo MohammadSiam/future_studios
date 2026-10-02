@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { CartLineItem } from "@/components/cart/cart-line-item";
+import { CartSkeleton } from "@/components/cart/cart-skeleton";
 import { CartSummary } from "@/components/cart/cart-summary";
-import { EmptyState } from "@/components/ui/empty-state";
-import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyCart } from "@/components/cart/empty-cart";
 import { calculateCartTotals } from "@/lib/cart";
 import { useCartHydrated, useCartStore } from "@/store/cart";
 
@@ -16,31 +16,8 @@ export function CartView() {
   const removeItem = useCartStore((state) => state.removeItem);
   const totals = useMemo(() => calculateCartTotals(items), [items]);
 
-  if (!hydrated) {
-    return (
-      <div className="grid gap-8 lg:grid-cols-[1fr_360px]" aria-busy="true">
-        <div className="space-y-4">
-          <Skeleton className="h-24" />
-          <Skeleton className="h-24" />
-        </div>
-        <Skeleton className="h-56" />
-      </div>
-    );
-  }
-
-  if (items.length === 0) {
-    return (
-      <EmptyState
-        title="Your cart is empty"
-        description="Looks like you haven't added anything yet."
-        action={
-          <Link href="/products" className="text-sm font-medium underline">
-            Continue shopping
-          </Link>
-        }
-      />
-    );
-  }
+  if (!hydrated) return <CartSkeleton />;
+  if (items.length === 0) return <EmptyCart />;
 
   return (
     <div className="grid items-start gap-8 lg:grid-cols-[1fr_360px]">

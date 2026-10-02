@@ -1,13 +1,15 @@
 import type { ReactNode } from "react";
 import { FREE_SHIPPING_THRESHOLD, type calculateCartTotals } from "@/lib/cart";
 import { formatPrice, pluralize } from "@/lib/utils";
+import type { CartItem } from "@/types/cart";
 
 interface CartSummaryProps {
   totals: ReturnType<typeof calculateCartTotals>;
+  items?: CartItem[];
   children?: ReactNode;
 }
 
-export function CartSummary({ totals, children }: CartSummaryProps) {
+export function CartSummary({ totals, items, children }: CartSummaryProps) {
   const { itemCount, subtotal, shipping, total } = totals;
 
   return (
@@ -18,6 +20,18 @@ export function CartSummary({ totals, children }: CartSummaryProps) {
       <h2 id="summary-heading" className="text-lg font-semibold">
         Order summary
       </h2>
+      {items && (
+        <ul className="border-border space-y-2 border-b pb-4 text-sm">
+          {items.map((item) => (
+            <li key={item.id} className="flex justify-between gap-4">
+              <span className="text-muted">
+                {item.title} × {item.quantity}
+              </span>
+              <span>{formatPrice(item.price * item.quantity)}</span>
+            </li>
+          ))}
+        </ul>
+      )}
       <dl className="space-y-2 text-sm">
         <div className="flex justify-between">
           <dt className="text-muted">
