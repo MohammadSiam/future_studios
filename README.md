@@ -4,7 +4,9 @@ A high-performance e-commerce app with product browsing, URL-driven search and f
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Zustand · React Hook Form · Zod · lucide-react icons
 
-**Live demo:** _add deployment URL here_
+**Live demo:** https://future-studios.vercel.app/products
+
+**Repository:** https://github.com/MohammadSiam/future_studios
 
 ## Features
 
@@ -36,6 +38,8 @@ pnpm dev                     # http://localhost:3000
 | `pnpm type-check`    | Generate route types and run `tsc --noEmit`                                   |
 | `pnpm format`        | Format with Prettier                                                          |
 | `pnpm generate:data` | Regenerate `src/lib/data/products.json` (seeded, so the output never changes) |
+
+**Deployment:** the app is deployed on Vercel with no extra config. The site URL used for canonical, Open Graph, sitemap and robots links comes from `NEXT_PUBLIC_SITE_URL`. If that isn't set, it falls back to Vercel's `VERCEL_PROJECT_PRODUCTION_URL`, then to `http://localhost:3000`.
 
 ## Architecture & folder structure
 
