@@ -15,7 +15,7 @@ export function CartSummary({ totals, items, children }: CartSummaryProps) {
   return (
     <section
       aria-labelledby="summary-heading"
-      className="border-border space-y-4 rounded-lg border p-6"
+      className="border-border bg-card space-y-4 rounded-lg border p-6"
     >
       <h2 id="summary-heading" className="text-lg font-semibold">
         Order summary

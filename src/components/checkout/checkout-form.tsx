@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Banknote, CreditCard, Lock } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { placeOrder } from "@/app/checkout/actions";
 import { Button } from "@/components/ui/button";
@@ -50,6 +51,11 @@ const DEFAULT_VALUES: CheckoutFormValues = {
   paymentMethod: "cash-on-delivery",
 };
 
+function PaymentIcon({ method }: { method: string }) {
+  const Icon = method === "card-on-delivery" ? CreditCard : Banknote;
+  return <Icon className="text-muted size-5" aria-hidden />;
+}
+
 export function CheckoutForm({ items, onOrderPlaced }: CheckoutFormProps) {
   const {
     register,
@@ -76,7 +82,11 @@ export function CheckoutForm({ items, onOrderPlaced }: CheckoutFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-8">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      className="border-border bg-card space-y-8 rounded-lg border p-6"
+    >
       <fieldset className="space-y-4">
         <legend className="mb-4 text-lg font-semibold">Shipping details</legend>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -125,6 +135,7 @@ export function CheckoutForm({ items, onOrderPlaced }: CheckoutFormProps) {
               className="accent-primary"
               {...register("paymentMethod")}
             />
+            <PaymentIcon method={value} />
             <span className="text-sm font-medium">{label}</span>
           </label>
         ))}
@@ -143,6 +154,7 @@ export function CheckoutForm({ items, onOrderPlaced }: CheckoutFormProps) {
       )}
 
       <Button type="submit" disabled={isSubmitting} className="h-12 w-full">
+        <Lock className="size-4" aria-hidden />
         {isSubmitting ? "Placing order…" : "Place order"}
       </Button>
     </form>

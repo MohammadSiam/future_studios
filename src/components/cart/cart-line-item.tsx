@@ -1,3 +1,4 @@
+import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
@@ -17,7 +18,7 @@ export const CartLineItem = memo(function CartLineItem({
   onRemove,
 }: CartLineItemProps) {
   return (
-    <li className="flex gap-4 py-6">
+    <li className="flex gap-4 p-4 sm:p-6">
       <Link
         href={`/products/${item.slug}`}
         className="bg-surface relative size-24 shrink-0 overflow-hidden rounded-md"
@@ -54,8 +55,9 @@ export const CartLineItem = memo(function CartLineItem({
         <button
           type="button"
           onClick={() => onRemove(item.id)}
-          className="text-muted hover:text-foreground self-start text-sm hover:underline"
+          className="text-muted hover:text-foreground flex items-center gap-1 self-start text-sm hover:underline"
         >
+          <Trash2 className="size-4" aria-hidden />
           Remove
         </button>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
 import { CartLineItem } from "@/components/cart/cart-line-item";
@@ -21,7 +22,7 @@ export function CartView() {
 
   return (
     <div className="grid items-start gap-8 lg:grid-cols-[1fr_360px]">
-      <ul className="divide-border border-border divide-y border-y">
+      <ul className="divide-border border-border bg-card divide-y rounded-lg border">
         {items.map((item) => (
           <CartLineItem
             key={item.id}
@@ -34,9 +35,10 @@ export function CartView() {
       <CartSummary totals={totals}>
         <Link
           href="/checkout"
-          className="bg-primary text-primary-foreground flex h-11 w-full items-center justify-center rounded-md text-sm font-medium hover:opacity-90"
+          className="bg-primary text-primary-foreground flex h-11 w-full items-center justify-center gap-2 rounded-md text-sm font-medium hover:opacity-90"
         >
           Proceed to checkout
+          <ArrowRight className="size-4" aria-hidden />
         </Link>
       </CartSummary>
     </div>

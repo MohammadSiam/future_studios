@@ -1,3 +1,5 @@
+import { Minus, Plus } from "lucide-react";
+
 interface QuantityControlProps {
   quantity: number;
   max: number;
@@ -6,7 +8,7 @@ interface QuantityControlProps {
 }
 
 const BUTTON_CLASS =
-  "flex size-9 items-center justify-center text-lg hover:bg-surface disabled:pointer-events-none disabled:opacity-40";
+  "flex size-9 items-center justify-center hover:bg-surface disabled:pointer-events-none disabled:opacity-40";
 
 export function QuantityControl({
   quantity,
@@ -27,7 +29,7 @@ export function QuantityControl({
         disabled={quantity <= 1}
         aria-label="Decrease quantity"
       >
-        −
+        <Minus className="size-4" aria-hidden />
       </button>
       <span
         className="w-10 text-center text-sm tabular-nums"
@@ -42,7 +44,7 @@ export function QuantityControl({
         disabled={quantity >= max}
         aria-label="Increase quantity"
       >
-        +
+        <Plus className="size-4" aria-hidden />
       </button>
     </div>
   );

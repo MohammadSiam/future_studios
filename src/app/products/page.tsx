@@ -40,7 +40,7 @@ export default async function ProductsPage({
         </div>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-[220px_1fr]">
+      <div className="grid gap-8 lg:grid-cols-[220px_1fr] lg:items-start">
         <FilterDrawer>
           <FilterSidebar query={query} categories={categories} />
         </FilterDrawer>

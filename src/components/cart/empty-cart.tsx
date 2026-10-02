@@ -1,9 +1,11 @@
+import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { EmptyState } from "@/components/ui/empty-state";
 
 export function EmptyCart() {
   return (
     <EmptyState
+      icon={ShoppingCart}
       title="Your cart is empty"
       description="Looks like you haven't added anything yet."
       action={

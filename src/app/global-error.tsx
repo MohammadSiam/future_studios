@@ -1,5 +1,6 @@
 "use client";
 
+import { TriangleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import "./globals.css";
@@ -15,6 +16,7 @@ export default function GlobalError({ retry }: GlobalErrorProps) {
       <body className="flex min-h-screen items-center justify-center p-4 font-sans">
         <title>Something went wrong</title>
         <EmptyState
+          icon={TriangleAlert}
           title="Something went wrong"
           description="An unexpected error occurred. Please try again."
           action={<Button onClick={retry}>Try again</Button>}

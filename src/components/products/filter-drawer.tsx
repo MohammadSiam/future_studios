@@ -1,5 +1,6 @@
 "use client";
 
+import { SlidersHorizontal, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
@@ -43,6 +44,7 @@ export function FilterDrawer({ children }: { children: ReactNode }) {
         aria-controls="product-filters"
         onClick={() => setOpen(true)}
       >
+        <SlidersHorizontal className="size-4" aria-hidden />
         Filters
       </Button>
 
@@ -52,7 +54,7 @@ export function FilterDrawer({ children }: { children: ReactNode }) {
         aria-modal={open || undefined}
         aria-label={open ? "Filters" : undefined}
         className={cn(
-          "lg:block",
+          "lg:sticky lg:top-20 lg:block",
           open
             ? "bg-background fixed inset-0 z-20 overflow-y-auto p-4"
             : "hidden",
@@ -67,6 +69,7 @@ export function FilterDrawer({ children }: { children: ReactNode }) {
               onClick={() => setOpen(false)}
               autoFocus
             >
+              <X className="size-4" aria-hidden />
               Close
             </Button>
           </div>

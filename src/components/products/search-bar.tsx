@@ -1,5 +1,6 @@
 "use client";
 
+import { Search } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { useDebouncedCallback } from "@/hooks/use-debounced-callback";
@@ -23,7 +24,11 @@ export function SearchBar({ query = "" }: { query?: string }) {
   }, [query]);
 
   return (
-    <div role="search" className="w-full sm:w-72">
+    <div role="search" className="relative w-full sm:w-72">
+      <Search
+        className="text-muted pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
+        aria-hidden
+      />
       <label htmlFor="product-search" className="sr-only">
         Search products
       </label>
@@ -32,6 +37,7 @@ export function SearchBar({ query = "" }: { query?: string }) {
         id="product-search"
         type="search"
         placeholder="Search products…"
+        className="pl-9"
         defaultValue={query}
         onChange={(event) => search(event.target.value)}
       />

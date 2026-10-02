@@ -10,6 +10,7 @@ import { ReviewList } from "@/components/products/review-list";
 import { StockStatus } from "@/components/products/stock-status";
 import { Rating } from "@/components/ui/rating";
 import { getAllSlugs, getProductBySlug } from "@/lib/api/products";
+import { toCartProduct } from "@/lib/cart";
 import { buildProductsHref } from "@/lib/products-href";
 import { siteConfig } from "@/lib/site";
 import { formatPrice } from "@/lib/utils";
@@ -132,16 +133,7 @@ export default async function ProductPage({
             </div>
             <p className="text-3xl font-bold">{formatPrice(product.price)}</p>
             <StockStatus stock={product.stock} />
-            <AddToCartButton
-              product={{
-                id: product.id,
-                slug: product.slug,
-                title: product.title,
-                price: product.price,
-                stock: product.stock,
-                thumbnail: product.thumbnail,
-              }}
-            />
+            <AddToCartButton product={toCartProduct(product)} />
             <p className="text-muted leading-relaxed">{product.description}</p>
           </div>
         </div>
@@ -150,7 +142,7 @@ export default async function ProductPage({
       <section
         id="reviews"
         aria-labelledby="reviews-heading"
-        className="scroll-mt-20"
+        className="border-border bg-card scroll-mt-20 rounded-lg border p-6"
       >
         <h2 id="reviews-heading" className="text-xl font-semibold">
           Customer reviews ({product.reviews.length})

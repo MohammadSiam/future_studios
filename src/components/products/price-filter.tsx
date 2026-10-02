@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import type { FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,31 +24,33 @@ export function PriceFilter({ minPrice, maxPrice }: PriceFilterProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="flex items-center gap-2">
-        <label className="text-muted flex-1 text-xs">
-          Min
-          <Input
-            name="minPrice"
-            type="number"
-            min={0}
-            defaultValue={minPrice}
-            className="mt-1"
-          />
-        </label>
-        <label className="text-muted flex-1 text-xs">
-          Max
-          <Input
-            name="maxPrice"
-            type="number"
-            min={0}
-            defaultValue={maxPrice}
-            className="mt-1"
-          />
-        </label>
-      </div>
-      <Button type="submit" variant="outline" className="w-full">
-        Apply
+    <form onSubmit={handleSubmit} className="flex items-center gap-2">
+      <Input
+        name="minPrice"
+        type="number"
+        min={0}
+        placeholder="Min"
+        aria-label="Minimum price"
+        defaultValue={minPrice}
+        className="h-9 min-w-0 px-2"
+      />
+      <Input
+        name="maxPrice"
+        type="number"
+        min={0}
+        placeholder="Max"
+        aria-label="Maximum price"
+        defaultValue={maxPrice}
+        className="h-9 min-w-0 px-2"
+      />
+      <Button
+        type="submit"
+        variant="outline"
+        className="size-9 shrink-0 p-0"
+        aria-label="Apply price filter"
+        title="Apply"
+      >
+        <ArrowRight className="size-4" aria-hidden />
       </Button>
     </form>
   );

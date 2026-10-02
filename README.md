@@ -2,7 +2,7 @@
 
 A high-performance e-commerce app with product browsing, URL-driven search and filters, a persistent cart, and a validated checkout.
 
-**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Zustand · React Hook Form · Zod
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Zustand · React Hook Form · Zod · lucide-react icons
 
 **Live demo:** _add deployment URL here_
 
@@ -138,7 +138,7 @@ Notable patterns:
 **`React.memo`**
 
 - `CartLineItem` is memoized. The store updates items immutably, so changing one row's quantity creates a new object only for that row, and the other rows skip re-rendering. Its handler props are stable Zustand actions, so the memo is actually effective.
-- `ProductCard` is a Server Component, so it never re-renders on the client and needs no `memo`.
+- `ProductCard` is a Server Component, so it never re-renders on the client and needs no `memo`. Only its add-to-cart icon button is a client component, and it receives just the 6 cart fields.
 
 **Re-render control**
 

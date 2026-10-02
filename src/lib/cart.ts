@@ -1,4 +1,4 @@
-import type { CartItem } from "@/types/cart";
+import type { CartItem, CartProduct } from "@/types/cart";
 
 export const FREE_SHIPPING_THRESHOLD = 100;
 const SHIPPING_FEE = 9.99;
@@ -13,4 +13,15 @@ export function calculateCartTotals(items: CartItem[]) {
     subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
 
   return { itemCount, subtotal, shipping, total: subtotal + shipping };
+}
+
+export function toCartProduct({
+  id,
+  slug,
+  title,
+  price,
+  stock,
+  thumbnail,
+}: CartProduct): CartProduct {
+  return { id, slug, title, price, stock, thumbnail };
 }

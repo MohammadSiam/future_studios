@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { buildProductsHref } from "@/lib/products-href";
 import type { ProductQuery } from "@/lib/schemas/product-query";
@@ -9,7 +10,7 @@ interface PaginationProps {
 }
 
 const ITEM_CLASS =
-  "flex h-9 min-w-9 items-center justify-center rounded-md px-3 text-sm";
+  "flex h-9 min-w-9 items-center justify-center gap-1 rounded-md px-3 text-sm";
 
 function getPageItems(current: number, total: number) {
   const pages = [...new Set([1, current - 1, current, current + 1, total])]
@@ -40,10 +41,14 @@ export function Pagination({ query, totalPages }: PaginationProps) {
           href={hrefFor(page - 1)}
           className={cn(ITEM_CLASS, "hover:bg-surface")}
         >
+          <ChevronLeft className="size-4" aria-hidden />
           Previous
         </Link>
       ) : (
-        <span className={cn(ITEM_CLASS, "text-muted")}>Previous</span>
+        <span className={cn(ITEM_CLASS, "text-muted")}>
+          <ChevronLeft className="size-4" aria-hidden />
+          Previous
+        </span>
       )}
 
       {getPageItems(page, totalPages).map((item, index) =>
@@ -77,9 +82,13 @@ export function Pagination({ query, totalPages }: PaginationProps) {
           className={cn(ITEM_CLASS, "hover:bg-surface")}
         >
           Next
+          <ChevronRight className="size-4" aria-hidden />
         </Link>
       ) : (
-        <span className={cn(ITEM_CLASS, "text-muted")}>Next</span>
+        <span className={cn(ITEM_CLASS, "text-muted")}>
+          Next
+          <ChevronRight className="size-4" aria-hidden />
+        </span>
       )}
     </nav>
   );

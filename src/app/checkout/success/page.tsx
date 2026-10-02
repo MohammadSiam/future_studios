@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CircleCheckBig } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -17,10 +18,10 @@ export default async function CheckoutSuccessPage({
   return (
     <main className="mx-auto flex w-full max-w-xl flex-1 flex-col items-center justify-center gap-4 px-4 py-16 text-center">
       <p
-        className="flex size-14 items-center justify-center rounded-full bg-green-100 text-2xl text-green-700"
+        className="flex size-16 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-400"
         aria-hidden
       >
-        ✓
+        <CircleCheckBig className="size-8" />
       </p>
       <h1 className="text-2xl font-semibold tracking-tight">
         Thank you for your order!

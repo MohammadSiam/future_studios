@@ -1,5 +1,6 @@
 "use client";
 
+import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { pluralize } from "@/lib/utils";
 import { useCartHydrated, useCartStore } from "@/store/cart";
@@ -14,12 +15,12 @@ export function CartBadge() {
   return (
     <Link
       href="/cart"
-      className="relative text-sm font-medium hover:underline"
+      className="hover:bg-surface relative flex size-10 items-center justify-center rounded-full"
       aria-label={`Cart, ${pluralize(visibleCount, "item")}`}
     >
-      Cart
+      <ShoppingCart className="size-5" aria-hidden />
       {visibleCount > 0 && (
-        <span className="bg-primary text-primary-foreground absolute -top-2 -right-4 flex min-w-5 items-center justify-center rounded-full px-1 text-xs">
+        <span className="bg-primary text-primary-foreground absolute -top-0.5 -right-0.5 flex min-w-5 items-center justify-center rounded-full px-1 text-xs">
           {visibleCount}
         </span>
       )}

@@ -1,3 +1,4 @@
+import { SearchX } from "lucide-react";
 import Link from "next/link";
 import { Pagination } from "@/components/products/pagination";
 import { ProductGrid } from "@/components/products/product-grid";
@@ -11,6 +12,7 @@ export async function ProductResults({ query }: { query: ProductQuery }) {
   if (items.length === 0) {
     return (
       <EmptyState
+        icon={SearchX}
         title="No products found"
         description="Try a different search term or adjust your filters."
         action={
