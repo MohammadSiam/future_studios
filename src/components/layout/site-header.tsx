@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CartBadge } from "@/components/cart/cart-badge";
 import { siteConfig } from "@/lib/site";
 
 export function SiteHeader() {
@@ -8,13 +9,14 @@ export function SiteHeader() {
         <Link href="/products" className="text-lg font-bold tracking-tight">
           {siteConfig.name}
         </Link>
-        <nav aria-label="Main">
+        <nav aria-label="Main" className="flex items-center gap-8 pr-4">
           <Link
             href="/products"
             className="text-sm font-medium hover:underline"
           >
             Products
           </Link>
+          <CartBadge />
         </nav>
       </div>
     </header>

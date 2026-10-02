@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { AddToCartButton } from "@/components/products/add-to-cart-button";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductGridSkeleton } from "@/components/products/product-grid";
 import { RelatedProducts } from "@/components/products/related-products";
@@ -129,6 +130,16 @@ export default async function ProductPage({
             </div>
             <p className="text-3xl font-bold">{formatPrice(product.price)}</p>
             <StockStatus stock={product.stock} />
+            <AddToCartButton
+              product={{
+                id: product.id,
+                slug: product.slug,
+                title: product.title,
+                price: product.price,
+                stock: product.stock,
+                thumbnail: product.thumbnail,
+              }}
+            />
             <p className="text-muted leading-relaxed">{product.description}</p>
           </div>
         </div>
