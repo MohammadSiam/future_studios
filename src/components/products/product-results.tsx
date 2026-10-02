@@ -29,7 +29,7 @@ export async function ProductResults({ query }: { query: ProductQuery }) {
       <p className="text-muted mb-4 text-sm">
         Showing {start}–{start + items.length - 1} of {total} products
       </p>
-      <ProductGrid products={items} />
+      <ProductGrid products={items} preloadCount={4} />
       <Pagination query={{ ...query, page }} totalPages={totalPages} />
     </section>
   );

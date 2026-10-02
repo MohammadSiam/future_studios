@@ -3,26 +3,29 @@ import { Skeleton } from "@/components/ui/skeleton";
 import type { ProductSummary } from "@/types/product";
 
 const GRID_CLASS = "grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4";
-const PRELOAD_COUNT = 4;
+interface ProductGridProps {
+  products: ProductSummary[];
+  preloadCount?: number;
+}
 
-export function ProductGrid({ products }: { products: ProductSummary[] }) {
+export function ProductGrid({ products, preloadCount = 0 }: ProductGridProps) {
   return (
     <ul className={GRID_CLASS}>
       {products.map((product, index) => (
         <li key={product.id}>
-          <ProductCard product={product} preload={index < PRELOAD_COUNT} />
+          <ProductCard product={product} preload={index < preloadCount} />
         </li>
       ))}
     </ul>
   );
 }
 
-export function ProductGridSkeleton() {
+export function ProductGridSkeleton({ count = 12 }: { count?: number }) {
   return (
     <div aria-busy="true" aria-label="Loading products">
       <Skeleton className="mb-4 h-5 w-48" />
       <div className={GRID_CLASS}>
-        {Array.from({ length: 12 }, (_, index) => (
+        {Array.from({ length: count }, (_, index) => (
           <div
             key={index}
             className="border-border overflow-hidden rounded-lg border"
