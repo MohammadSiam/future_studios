@@ -11,6 +11,7 @@ import { StockStatus } from "@/components/products/stock-status";
 import { Rating } from "@/components/ui/rating";
 import { getAllSlugs, getProductBySlug } from "@/lib/api/products";
 import { buildProductsHref } from "@/lib/products-href";
+import { siteConfig } from "@/lib/site";
 import { formatPrice } from "@/lib/utils";
 import type { Product } from "@/types/product";
 
@@ -33,6 +34,7 @@ export async function generateMetadata({
     alternates: { canonical: `/products/${product.slug}` },
     openGraph: {
       type: "website",
+      siteName: siteConfig.name,
       title: product.title,
       description: product.description,
       url: `/products/${product.slug}`,

@@ -15,10 +15,10 @@ export function StockStatus({ stock }: { stock: number }) {
       className={cn(
         "text-sm font-medium",
         stock === 0
-          ? "text-red-600"
+          ? "text-red-700 dark:text-red-400"
           : stock <= LOW_STOCK_THRESHOLD
-            ? "text-amber-600"
-            : "text-green-600",
+            ? "text-amber-700 dark:text-amber-400"
+            : "text-green-700 dark:text-green-400",
       )}
     >
       {label}

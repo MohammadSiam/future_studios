@@ -1,18 +1,25 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { FilterDrawer } from "@/components/products/filter-drawer";
 import { FilterSidebar } from "@/components/products/filter-sidebar";
 import { ProductGridSkeleton } from "@/components/products/product-grid";
 import { ProductResults } from "@/components/products/product-results";
 import { SearchBar } from "@/components/products/search-bar";
 import { SortSelect } from "@/components/products/sort-select";
 import { getCategories } from "@/lib/api/products";
+import { buildProductsHref } from "@/lib/products-href";
 import { productQuerySchema } from "@/lib/schemas/product-query";
 
 export async function generateMetadata({
   searchParams,
 }: PageProps<"/products">): Promise<Metadata> {
-  const { q } = productQuerySchema.parse(await searchParams);
-  return { title: q ? `Search results for "${q}"` : "All products" };
+  const { q, category, page } = productQuerySchema.parse(await searchParams);
+
+  return {
+    title: q ? `Search results for "${q}"` : "All products",
+    alternates: { canonical: buildProductsHref({ category, page }) },
+    robots: q ? { index: false, follow: true } : undefined,
+  };
 }
 
 export default async function ProductsPage({
@@ -34,7 +41,9 @@ export default async function ProductsPage({
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[220px_1fr]">
-        <FilterSidebar query={query} categories={categories} />
+        <FilterDrawer>
+          <FilterSidebar query={query} categories={categories} />
+        </FilterDrawer>
         <Suspense
           key={JSON.stringify(query)}
           fallback={<ProductGridSkeleton />}
